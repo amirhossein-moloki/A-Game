@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>سوالات متداول - GameStore</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header id="navbar-container"></header>
+    <main>
+        <div class="page-header">
+            <h1>سوالات متداول</h1>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">محصولات چگونه تحویل داده می‌شوند؟ <span>+</span></button>
+                <div class="faq-answer">
+                    <p>تمام محصولات دیجیتال (کلید بازی، اکانت، ارز) به صورت آنی پس از پرداخت موفق، به ایمیل شما ارسال خواهند شد.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">آیا امکان بازگشت وجه وجود دارد؟ <span>+</span></button>
+                <div class="faq-answer">
+                    <p>به دلیل ماهیت دیجیتال محصولات، پس از تحویل کلید یا اطلاعات اکانت، امکان بازگشت وجه وجود ندارد. لطفاً در خرید خود دقت کنید.</p>
+                </div>
+            </div>
+             <div class="faq-item">
+                <button class="faq-question">پشتیبانی به چه صورت است؟ <span>+</span></button>
+                <div class="faq-answer">
+                    <p>شما می‌توانید از طریق صفحه "تماس با ما" یا شبکه‌های اجتماعی با ما در ارتباط باشید. تیم پشتیبانی در اسرع وقت پاسخگوی شما خواهد بود.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer id="footer-container"></footer>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                faqItem.classList.toggle('active');
+                 const icon = button.querySelector('span');
+                 icon.textContent = faqItem.classList.contains('active') ? '−' : '+';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -21,20 +21,39 @@ std::string wstring_to_string(const std::wstring& wstr) {
     return converter.to_bytes(wstr);
 }
 
-void PrintDeviceList() {
-    std::cout << "\nEnumerating HID devices..." << std::endl;
+void PopulateDeviceList(HWND hListBox) {
+    SendMessage(hListBox, LB_RESETCONTENT, 0, 0);
+
     DeviceEnumerator enumerator;
     std::vector<InputDevice> devices = enumerator.EnumerateDevices();
+
     if (devices.empty()) {
-        std::cout << "No HID devices found." << std::endl;
+        SendMessage(hListBox, LB_ADDSTRING, 0, (LPARAM)L"No HID devices found.");
     } else {
-        std::cout << "Found " << devices.size() << " devices." << std::endl;
-        // ... (printing logic is the same)
+        for (const auto& device : devices) {
+            std::wstring wide_name(device.name.begin(), device.name.end());
+            SendMessage(hListBox, LB_ADDSTRING, 0, (LPARAM)wide_name.c_str());
+        }
     }
 }
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
     switch (uMsg) {
+        case WM_CREATE:
+            {
+                HWND hListBox = CreateWindow(L"LISTBOX", NULL, WS_CHILD | WS_VISIBLE | LBS_STANDARD | WS_VSCROLL,
+                                             10, 10, 350, 200, hwnd, (HMENU)1, NULL, NULL);
+                CreateWindow(L"BUTTON", L"Refresh", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON,
+                             10, 220, 80, 30, hwnd, (HMENU)2, NULL, NULL);
+                PopulateDeviceList(hListBox);
+            }
+            break;
+        case WM_COMMAND:
+            if (LOWORD(wParam) == 2) { // ID of the refresh button is 2
+                HWND hListBox = GetDlgItem(hwnd, 1); // ID of the list box is 1
+                PopulateDeviceList(hListBox);
+            }
+            break;
         case WM_INPUT:
             if (g_pRawInputHandler) g_pRawInputHandler->ProcessRawInput(lParam);
             return 0;
@@ -44,16 +63,36 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
         default:
             return DefWindowProc(hwnd, uMsg, wParam, lParam);
     }
+    return 0;
 }
 
-HWND CreateHiddenWindow() {
-    const wchar_t CLASS_NAME[] = L"CoreServiceHiddenWindow";
-    WNDCLASS wc = {};
-    wc.lpfnWndProc = WindowProc;
-    wc.hInstance = GetModuleHandle(NULL);
+HWND CreateMainWindow() {
+    const wchar_t CLASS_NAME[]  = L"MainWClass";
+
+    WNDCLASS wc = { };
+
+    wc.lpfnWndProc   = WindowProc;
+    wc.hInstance     = GetModuleHandle(NULL);
     wc.lpszClassName = CLASS_NAME;
+
     RegisterClass(&wc);
-    return CreateWindowEx(0, CLASS_NAME, L"Core Service Hidden Window", 0, 0, 0, 0, 0, HWND_MESSAGE, NULL, GetModuleHandle(NULL), NULL);
+
+    HWND hwnd = CreateWindowEx(
+        0,                              // Optional window styles.
+        CLASS_NAME,                     // Window class
+        L"Rewasd Clone",                // Window text
+        WS_OVERLAPPEDWINDOW,            // Window style
+
+        // Size and position
+        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+
+        NULL,       // Parent window
+        NULL,       // Menu
+        GetModuleHandle(NULL),  // Instance handle
+        NULL        // Additional application data
+        );
+
+    return hwnd;
 }
 
 // --- Task 2.2: Implement the Translation Loop ---
@@ -84,9 +123,6 @@ void SetupTestMappings(MappingEngine& engine) {
 }
 
 int main() {
-    std::cout << "Core Service Starting..." << std::endl;
-    PrintDeviceList();
-
     // --- Core Component Initialization ---
     VirtualController controller;
     if (!controller.Initialize()) {
@@ -101,12 +137,13 @@ int main() {
     SetupTestMappings(mappingEngine);
     // ------------------------------------
 
-    HWND hwnd = CreateHiddenWindow();
+    HWND hwnd = CreateMainWindow();
     if (hwnd == NULL) {
-        std::cerr << "Failed to create hidden window. Exiting." << std::endl;
-        return 1;
+        return 0;
     }
-    std::cout << "\nCreated hidden window for message processing." << std::endl;
+
+    ShowWindow(hwnd, SW_SHOWDEFAULT);
+    UpdateWindow(hwnd);
 
     RawInputHandler rawInputHandler(mappingEngine); // Pass engine to handler
     g_pRawInputHandler = &rawInputHandler;

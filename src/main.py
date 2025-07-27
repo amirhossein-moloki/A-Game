@@ -20,10 +20,21 @@ def main():
         sys.exit(1)
 
     print("\n--- Available Profiles ---")
-    for profile in profile_manager.profiles:
-        print(f"- {profile['profileName']}")
+    for profile_name, profile_data in profile_manager.profiles.items():
+        print(f"\n--- {profile_name} ---")
+        for action in profile_data.get("actions", []):
+            print(f"- {action.get('name', 'Unnamed Action')}")
 
-    print(f"\nActivating profile: {profile_manager.active_profile['profileName']}")
+    # Correctly access the active profile's name
+    if profile_manager.active_profile:
+        # The active_profile is now a dict, not a list
+        # Find the key (profile_name) of the active_profile dict
+        active_profile_name = "Unknown"
+        for name, profile in profile_manager.profiles.items():
+            if profile == profile_manager.active_profile:
+                active_profile_name = name
+                break
+        print(f"\nActivating profile: {active_profile_name}")
 
     # Start input handling
     input_handler.start()

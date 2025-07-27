@@ -7,15 +7,17 @@ class ProfileManager:
         self.profiles = self.load_profiles()
         self.active_profile = None
         if self.profiles:
-            self.active_profile = self.profiles[0]
+            # Set the first profile as active by default
+            self.active_profile = next(iter(self.profiles.values()), None)
 
     def load_profiles(self):
-        profiles = []
+        profiles = {}
         for filename in os.listdir(self.profiles_dir):
             if filename.endswith(".json"):
                 filepath = os.path.join(self.profiles_dir, filename)
+                profile_name = os.path.splitext(filename)[0]
                 with open(filepath, "r", encoding="utf-8") as f:
-                    profiles.append(json.load(f))
+                    profiles[profile_name] = json.load(f)
         return profiles
 
     def set_active_profile(self, profile_name):

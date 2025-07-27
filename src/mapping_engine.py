@@ -28,7 +28,7 @@ class MappingEngine:
             "X_Button": vg.XUSB_BUTTON.XUSB_GAMEPAD_X,
             "Y_Button": vg.XUSB_BUTTON.XUSB_GAMEPAD_Y,
             "LB": vg.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_SHOULDER,
-            "RB": vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULder,
+            "RB": vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_SHOULDER,
             "LeftAnalogStick_Click": vg.XUSB_BUTTON.XUSB_GAMEPAD_LEFT_THUMB,
             "RightAnalogStick_Click": vg.XUSB_BUTTON.XUSB_GAMEPAD_RIGHT_THUMB,
             "Dpad_Up": vg.XUSB_BUTTON.XUSB_GAMEPAD_DPAD_UP,

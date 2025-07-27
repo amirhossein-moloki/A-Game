@@ -5,12 +5,21 @@ project(RewasdCloneCore LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+include(FetchContent)
+FetchContent_Declare(
+  nlohmann_json
+  GIT_REPOSITORY https://github.com/nlohmann/json.git
+  GIT_TAG v3.11.2
+)
+FetchContent_MakeAvailable(nlohmann_json)
+
 # Define an executable for the Core Service
 add_executable(CoreService WIN32 src/CoreService/Main.cpp
                                  src/CoreService/VirtualController.cpp
                                  src/CoreService/DeviceEnumerator.cpp
                                  src/CoreService/RawInputHandler.cpp
-                                 src/CoreService/MappingEngine.cpp)
+                                 src/CoreService/MappingEngine.cpp
+                                 src/CoreService/ProfileManager.cpp)
 
 # Specify include directories
 target_include_directories(CoreService PUBLIC
@@ -21,7 +30,7 @@ target_include_directories(CoreService PUBLIC
 message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
 
 # Link against User32 for windowing and message functions
-target_link_libraries(CoreService PRIVATE User32 setupapi)
+target_link_libraries(CoreService PRIVATE User32 setupapi nlohmann_json::nlohmann_json)
 
 # In a real scenario, you would link ViGEmBus and SetupAPI here:
 # find_package(ViGEmClient REQUIRED)

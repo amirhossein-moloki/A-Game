@@ -22,4 +22,5 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 
 # Add the mingw-w64 include directory to the include path
-set(CMAKE_CXX_FLAGS "-I/usr/x86_64-w64-mingw32/include")
+set(CMAKE_SYSTEM_INCLUDE_PATH /usr/x86_64-w64-mingw32/include)
+set(CMAKE_CXX_FLAGS "-I/app/include/CoreService")

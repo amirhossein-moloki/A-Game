@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj.d"
   "CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj"
   "CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj.d"
+  "CMakeFiles/CoreService.dir/src/CoreService/ProfileManager.cpp.obj"
+  "CMakeFiles/CoreService.dir/src/CoreService/ProfileManager.cpp.obj.d"
   "CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj"
   "CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj.d"
   "CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj"

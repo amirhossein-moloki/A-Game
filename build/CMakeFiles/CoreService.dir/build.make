@@ -53,7 +53,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /app/rewasd_clone
+CMAKE_SOURCE_DIR = /app
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /app/build
@@ -69,99 +69,106 @@ include CMakeFiles/CoreService.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/CoreService.dir/flags.make
 
-CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o: CMakeFiles/CoreService.dir/flags.make
-CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o: /app/rewasd_clone/src/CoreService/Main.cpp
-CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o: CMakeFiles/CoreService.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o -MF CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o.d -o CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o -c /app/rewasd_clone/src/CoreService/Main.cpp
+CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj: CMakeFiles/CoreService.dir/flags.make
+CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj: CMakeFiles/CoreService.dir/includes_CXX.rsp
+CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj: /app/src/CoreService/Main.cpp
+CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj: CMakeFiles/CoreService.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj -MF CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj.d -o CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj -c /app/src/CoreService/Main.cpp
 
 CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/rewasd_clone/src/CoreService/Main.cpp > CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.i
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/src/CoreService/Main.cpp > CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.i
 
 CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/rewasd_clone/src/CoreService/Main.cpp -o CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.s
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/CoreService/Main.cpp -o CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.s
 
-CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o: CMakeFiles/CoreService.dir/flags.make
-CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o: /app/rewasd_clone/src/CoreService/VirtualController.cpp
-CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o: CMakeFiles/CoreService.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o -MF CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o.d -o CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o -c /app/rewasd_clone/src/CoreService/VirtualController.cpp
+CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj: CMakeFiles/CoreService.dir/flags.make
+CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj: CMakeFiles/CoreService.dir/includes_CXX.rsp
+CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj: /app/src/CoreService/VirtualController.cpp
+CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj: CMakeFiles/CoreService.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj -MF CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj.d -o CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj -c /app/src/CoreService/VirtualController.cpp
 
 CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/rewasd_clone/src/CoreService/VirtualController.cpp > CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.i
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/src/CoreService/VirtualController.cpp > CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.i
 
 CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/rewasd_clone/src/CoreService/VirtualController.cpp -o CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.s
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/CoreService/VirtualController.cpp -o CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.s
 
-CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o: CMakeFiles/CoreService.dir/flags.make
-CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o: /app/rewasd_clone/src/CoreService/DeviceEnumerator.cpp
-CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o: CMakeFiles/CoreService.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o -MF CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o.d -o CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o -c /app/rewasd_clone/src/CoreService/DeviceEnumerator.cpp
+CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj: CMakeFiles/CoreService.dir/flags.make
+CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj: CMakeFiles/CoreService.dir/includes_CXX.rsp
+CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj: /app/src/CoreService/DeviceEnumerator.cpp
+CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj: CMakeFiles/CoreService.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj -MF CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj.d -o CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj -c /app/src/CoreService/DeviceEnumerator.cpp
 
 CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/rewasd_clone/src/CoreService/DeviceEnumerator.cpp > CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.i
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/src/CoreService/DeviceEnumerator.cpp > CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.i
 
 CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/rewasd_clone/src/CoreService/DeviceEnumerator.cpp -o CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.s
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/CoreService/DeviceEnumerator.cpp -o CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.s
 
-CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o: CMakeFiles/CoreService.dir/flags.make
-CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o: /app/rewasd_clone/src/CoreService/RawInputHandler.cpp
-CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o: CMakeFiles/CoreService.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o -MF CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o.d -o CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o -c /app/rewasd_clone/src/CoreService/RawInputHandler.cpp
+CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj: CMakeFiles/CoreService.dir/flags.make
+CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj: CMakeFiles/CoreService.dir/includes_CXX.rsp
+CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj: /app/src/CoreService/RawInputHandler.cpp
+CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj: CMakeFiles/CoreService.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj -MF CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj.d -o CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj -c /app/src/CoreService/RawInputHandler.cpp
 
 CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/rewasd_clone/src/CoreService/RawInputHandler.cpp > CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.i
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/src/CoreService/RawInputHandler.cpp > CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.i
 
 CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/rewasd_clone/src/CoreService/RawInputHandler.cpp -o CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.s
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/CoreService/RawInputHandler.cpp -o CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.s
 
-CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o: CMakeFiles/CoreService.dir/flags.make
-CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o: /app/rewasd_clone/src/CoreService/MappingEngine.cpp
-CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o: CMakeFiles/CoreService.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o -MF CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o.d -o CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o -c /app/rewasd_clone/src/CoreService/MappingEngine.cpp
+CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj: CMakeFiles/CoreService.dir/flags.make
+CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj: CMakeFiles/CoreService.dir/includes_CXX.rsp
+CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj: /app/src/CoreService/MappingEngine.cpp
+CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj: CMakeFiles/CoreService.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj"
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj -MF CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj.d -o CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj -c /app/src/CoreService/MappingEngine.cpp
 
 CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/rewasd_clone/src/CoreService/MappingEngine.cpp > CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.i
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /app/src/CoreService/MappingEngine.cpp > CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.i
 
 CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/rewasd_clone/src/CoreService/MappingEngine.cpp -o CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.s
+	/usr/bin/x86_64-w64-mingw32-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /app/src/CoreService/MappingEngine.cpp -o CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.s
 
 # Object files for target CoreService
 CoreService_OBJECTS = \
-"CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o" \
-"CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o" \
-"CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o" \
-"CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o" \
-"CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o"
+"CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj" \
+"CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj" \
+"CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj" \
+"CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj" \
+"CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj"
 
 # External object files for target CoreService
 CoreService_EXTERNAL_OBJECTS =
 
-CoreService: CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o
-CoreService: CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o
-CoreService: CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o
-CoreService: CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o
-CoreService: CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o
-CoreService: CMakeFiles/CoreService.dir/build.make
-CoreService: CMakeFiles/CoreService.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable CoreService"
+CoreService.exe: CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj
+CoreService.exe: CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj
+CoreService.exe: CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj
+CoreService.exe: CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj
+CoreService.exe: CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj
+CoreService.exe: CMakeFiles/CoreService.dir/build.make
+CoreService.exe: CMakeFiles/CoreService.dir/linkLibs.rsp
+CoreService.exe: CMakeFiles/CoreService.dir/objects1.rsp
+CoreService.exe: CMakeFiles/CoreService.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/app/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable CoreService.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CoreService.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/CoreService.dir/build: CoreService
+CMakeFiles/CoreService.dir/build: CoreService.exe
 .PHONY : CMakeFiles/CoreService.dir/build
 
 CMakeFiles/CoreService.dir/clean:
@@ -169,5 +176,5 @@ CMakeFiles/CoreService.dir/clean:
 .PHONY : CMakeFiles/CoreService.dir/clean
 
 CMakeFiles/CoreService.dir/depend:
-	cd /app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /app/rewasd_clone /app/rewasd_clone /app/build /app/build /app/build/CMakeFiles/CoreService.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /app/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /app /app /app/build /app/build /app/build/CMakeFiles/CoreService.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/CoreService.dir/depend

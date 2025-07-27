@@ -15,20 +15,18 @@ add_executable(CoreService WIN32 src/CoreService/Main.cpp
 # Specify include directories
 target_include_directories(CoreService PUBLIC
     "${PROJECT_SOURCE_DIR}/include"
+    "${PROJECT_SOURCE_DIR}/src"
 )
 
+message(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+
 # Link against User32 for windowing and message functions
-target_link_libraries(CoreService PRIVATE User32)
+target_link_libraries(CoreService PRIVATE User32 setupapi)
 
 # In a real scenario, you would link ViGEmBus and SetupAPI here:
 # find_package(ViGEmClient REQUIRED)
 # target_link_libraries(CoreService PRIVATE ViGEmClient::ViGEmClient Setupapi)
 # Note: SetupAPI is often linked via pragma comment, but this is the explicit way.
-
-# Specify include directories
-target_include_directories(CoreService PUBLIC
-    "${PROJECT_SOURCE_DIR}/include"
-)
 
 # In a real scenario, you would link ViGEmBus here:
 # find_package(ViGEmClient REQUIRED)

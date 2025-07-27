@@ -1,7 +1,5 @@
 #include "DeviceEnumerator.h"
 #include <iostream>
-#include <SetupAPI.h> // Main header for device installation functions
-#include <devguid.h>  // For GUID_DEVCLASS_HIDCLASS
 
 // Link with SetupAPI.lib
 #pragma comment(lib, "Setupapi.lib")
@@ -36,17 +34,17 @@ std::vector<InputDevice> DeviceEnumerator::EnumerateDevices() {
 
 void DeviceEnumerator::GetDeviceDetails(HDEVINFO hDevInfo, PSP_DEVINFO_DATA pDevInfoData, InputDevice& device) {
     // Get Device Instance ID
-    device.instanceId = GetDeviceRegistryProperty(hDevInfo, pDevInfoData, SPDRP_DEVICEDESC);
+    device.instanceId = DeviceEnumerator::GetDeviceRegistryProperty(hDevInfo, pDevInfoData, SPDRP_DEVICEDESC);
 
     // Get a friendly name if available, otherwise use the description
-    device.name = GetDeviceRegistryProperty(hDevInfo, pDevInfoData, SPDRP_FRIENDLYNAME);
+    device.name = DeviceEnumerator::GetDeviceRegistryProperty(hDevInfo, pDevInfoData, SPDRP_FRIENDLYNAME);
     if (device.name.empty()) {
         device.name = device.instanceId;
     }
 
     // Get Hardware IDs (contains VID and PID)
-    std::wstring hardwareIds = GetDeviceRegistryProperty(hDevInfo, pDevInfoData, SPDRP_HARDWAREID);
-    ParseHardwareIds(hardwareIds, device);
+    std::wstring hardwareIds = DeviceEnumerator::GetDeviceRegistryProperty(hDevInfo, pDevInfoData, SPDRP_HARDWAREID);
+    DeviceEnumerator::ParseHardwareIds(hardwareIds, device);
 }
 
 std::wstring DeviceEnumerator::GetDeviceRegistryProperty(HDEVINFO hDevInfo, PSP_DEVINFO_DATA pDevInfoData, DWORD property) {
@@ -60,7 +58,7 @@ std::wstring DeviceEnumerator::GetDeviceRegistryProperty(HDEVINFO hDevInfo, PSP_
     }
 
     std::vector<BYTE> buffer(requiredSize);
-    if (!SetupDiGetDeviceRegistryProperty(hDevInfo, pDevInfoData, property, &dataType, buffer.data(), buffer.size(), &requiredSize)) {
+    if (!SetupDiGetDeviceRegistryProperty(hDevInfo, pDevInfoData, property, &dataType, buffer.data(), (DWORD)buffer.size(), &requiredSize)) {
         return L""; // Failed to get property
     }
 

@@ -57,7 +57,7 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /app/rewasd_clone
+CMAKE_SOURCE_DIR = /app
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /app/build
@@ -174,13 +174,13 @@ CoreService/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/build
 .PHONY : CoreService/fast
 
-src/CoreService/DeviceEnumerator.o: src/CoreService/DeviceEnumerator.cpp.o
-.PHONY : src/CoreService/DeviceEnumerator.o
+src/CoreService/DeviceEnumerator.obj: src/CoreService/DeviceEnumerator.cpp.obj
+.PHONY : src/CoreService/DeviceEnumerator.obj
 
 # target to build an object file
-src/CoreService/DeviceEnumerator.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.o
-.PHONY : src/CoreService/DeviceEnumerator.cpp.o
+src/CoreService/DeviceEnumerator.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.obj
+.PHONY : src/CoreService/DeviceEnumerator.cpp.obj
 
 src/CoreService/DeviceEnumerator.i: src/CoreService/DeviceEnumerator.cpp.i
 .PHONY : src/CoreService/DeviceEnumerator.i
@@ -198,13 +198,13 @@ src/CoreService/DeviceEnumerator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/DeviceEnumerator.cpp.s
 .PHONY : src/CoreService/DeviceEnumerator.cpp.s
 
-src/CoreService/Main.o: src/CoreService/Main.cpp.o
-.PHONY : src/CoreService/Main.o
+src/CoreService/Main.obj: src/CoreService/Main.cpp.obj
+.PHONY : src/CoreService/Main.obj
 
 # target to build an object file
-src/CoreService/Main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.o
-.PHONY : src/CoreService/Main.cpp.o
+src/CoreService/Main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.obj
+.PHONY : src/CoreService/Main.cpp.obj
 
 src/CoreService/Main.i: src/CoreService/Main.cpp.i
 .PHONY : src/CoreService/Main.i
@@ -222,13 +222,13 @@ src/CoreService/Main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/Main.cpp.s
 .PHONY : src/CoreService/Main.cpp.s
 
-src/CoreService/MappingEngine.o: src/CoreService/MappingEngine.cpp.o
-.PHONY : src/CoreService/MappingEngine.o
+src/CoreService/MappingEngine.obj: src/CoreService/MappingEngine.cpp.obj
+.PHONY : src/CoreService/MappingEngine.obj
 
 # target to build an object file
-src/CoreService/MappingEngine.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.o
-.PHONY : src/CoreService/MappingEngine.cpp.o
+src/CoreService/MappingEngine.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.obj
+.PHONY : src/CoreService/MappingEngine.cpp.obj
 
 src/CoreService/MappingEngine.i: src/CoreService/MappingEngine.cpp.i
 .PHONY : src/CoreService/MappingEngine.i
@@ -246,13 +246,13 @@ src/CoreService/MappingEngine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.s
 .PHONY : src/CoreService/MappingEngine.cpp.s
 
-src/CoreService/RawInputHandler.o: src/CoreService/RawInputHandler.cpp.o
-.PHONY : src/CoreService/RawInputHandler.o
+src/CoreService/RawInputHandler.obj: src/CoreService/RawInputHandler.cpp.obj
+.PHONY : src/CoreService/RawInputHandler.obj
 
 # target to build an object file
-src/CoreService/RawInputHandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.o
-.PHONY : src/CoreService/RawInputHandler.cpp.o
+src/CoreService/RawInputHandler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.obj
+.PHONY : src/CoreService/RawInputHandler.cpp.obj
 
 src/CoreService/RawInputHandler.i: src/CoreService/RawInputHandler.cpp.i
 .PHONY : src/CoreService/RawInputHandler.i
@@ -270,13 +270,13 @@ src/CoreService/RawInputHandler.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/RawInputHandler.cpp.s
 .PHONY : src/CoreService/RawInputHandler.cpp.s
 
-src/CoreService/VirtualController.o: src/CoreService/VirtualController.cpp.o
-.PHONY : src/CoreService/VirtualController.o
+src/CoreService/VirtualController.obj: src/CoreService/VirtualController.cpp.obj
+.PHONY : src/CoreService/VirtualController.obj
 
 # target to build an object file
-src/CoreService/VirtualController.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.o
-.PHONY : src/CoreService/VirtualController.cpp.o
+src/CoreService/VirtualController.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/VirtualController.cpp.obj
+.PHONY : src/CoreService/VirtualController.cpp.obj
 
 src/CoreService/VirtualController.i: src/CoreService/VirtualController.cpp.i
 .PHONY : src/CoreService/VirtualController.i
@@ -307,19 +307,19 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... CoreService"
-	@echo "... src/CoreService/DeviceEnumerator.o"
+	@echo "... src/CoreService/DeviceEnumerator.obj"
 	@echo "... src/CoreService/DeviceEnumerator.i"
 	@echo "... src/CoreService/DeviceEnumerator.s"
-	@echo "... src/CoreService/Main.o"
+	@echo "... src/CoreService/Main.obj"
 	@echo "... src/CoreService/Main.i"
 	@echo "... src/CoreService/Main.s"
-	@echo "... src/CoreService/MappingEngine.o"
+	@echo "... src/CoreService/MappingEngine.obj"
 	@echo "... src/CoreService/MappingEngine.i"
 	@echo "... src/CoreService/MappingEngine.s"
-	@echo "... src/CoreService/RawInputHandler.o"
+	@echo "... src/CoreService/RawInputHandler.obj"
 	@echo "... src/CoreService/RawInputHandler.i"
 	@echo "... src/CoreService/RawInputHandler.s"
-	@echo "... src/CoreService/VirtualController.o"
+	@echo "... src/CoreService/VirtualController.obj"
 	@echo "... src/CoreService/VirtualController.i"
 	@echo "... src/CoreService/VirtualController.s"
 .PHONY : help

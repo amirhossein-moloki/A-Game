@@ -106,6 +106,20 @@ namespace nlohmann {
     }
 } // namespace nlohmann
 
+#include <filesystem>
+namespace fs = std::filesystem;
+
+// ... (rest of the file)
+
+void ProfileManager::LoadProfilesFromDirectory(const std::string& directoryPath) {
+    for (const auto& entry : fs::directory_iterator(directoryPath)) {
+        if (entry.is_regular_file() && entry.path().extension() == ".json") {
+            std::cout << "Loading profile: " << entry.path().string() << std::endl;
+            LoadProfile(entry.path().string());
+        }
+    }
+}
+
 bool ProfileManager::LoadProfile(const std::string& filepath) {
     std::ifstream ifs(filepath);
     if (!ifs.is_open()) {
@@ -117,21 +131,22 @@ bool ProfileManager::LoadProfile(const std::string& filepath) {
         json j;
         ifs >> j;
 
-        std::string profileName = j.at("profile_name").get<std::string>();
+        std::string profileName = j.at("profileName").get<std::string>();
         Profile loadedProfile(profileName);
 
-        if (j.contains("mappings") && j.at("mappings").is_array()) {
-            for (const auto& mapping_json : j.at("mappings")) {
-                // This will not work until MappingRule's from_json is correctly implemented
-                // and MappingRule is default constructible or constructible from json.
-                // MappingRule rule = mapping_json.get<MappingRule>();
-                // loadedProfile.AddMapping(rule);
-                std::cerr << "Warning: Skipping mapping loading due to incomplete MappingRule deserialization." << std::endl;
+        if (j.contains("actions") && j.at("actions").is_array()) {
+            // This part is complex because it requires a full deserialization logic
+            // based on your JSON structure. For now, we'll just log the action names.
+            for (const auto& action_json : j.at("actions")) {
+                 std::string actionName = action_json.at("name").get<std::string>();
+                 // Here you would deserialize the full action and create a MappingRule
+                 // For now, we'll just print the name as a placeholder for loading logic.
+                 std::cout << "  - Found action: " << actionName << std::endl;
             }
         }
 
-        ActivateProfile(loadedProfile);
-        std::cout << "Profile loaded: " << profileName << std::endl;
+        profiles.push_back(loadedProfile); // Add the loaded profile to the list
+        std::cout << "Profile loaded and added to manager: " << profileName << std::endl;
         return true;
 
     } catch (json::parse_error& e) {

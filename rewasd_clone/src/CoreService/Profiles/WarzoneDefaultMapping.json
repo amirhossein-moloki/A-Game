@@ -1,0 +1,271 @@
+{
+  "profileName": "Warzone Default Mapping",
+  "actions": [
+    {
+      "name": "MoveForward",
+      "displayName": "حرکت به جلو",
+      "keyboardMouse": {
+        "primary": "W",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "LeftAnalogStick_Forward",
+        "secondary": null,
+        "type": "axis"
+      }
+    },
+    {
+      "name": "MoveBackward",
+      "displayName": "حرکت به عقب",
+      "keyboardMouse": {
+        "primary": "S",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "LeftAnalogStick_Backward",
+        "secondary": null,
+        "type": "axis"
+      }
+    },
+    {
+      "name": "StrafeLeft",
+      "displayName": "حرکت به چپ",
+      "keyboardMouse": {
+        "primary": "A",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "LeftAnalogStick_Left",
+        "secondary": null,
+        "type": "axis"
+      }
+    },
+    {
+      "name": "StrafeRight",
+      "displayName": "حرکت به راست",
+      "keyboardMouse": {
+        "primary": "D",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "LeftAnalogStick_Right",
+        "secondary": null,
+        "type": "axis"
+      }
+    },
+    {
+      "name": "LookAim",
+      "displayName": "چرخش دوربین/دید",
+      "keyboardMouse": {
+        "primary": "Mouse_Movement",
+        "secondary": null,
+        "type": "mouse_axis"
+      },
+      "xboxController": {
+        "primary": "RightAnalogStick_Movement",
+        "secondary": null,
+        "type": "axis"
+      }
+    },
+    {
+      "name": "Fire",
+      "displayName": "شلیک",
+      "keyboardMouse": {
+        "primary": "Mouse_LeftClick",
+        "secondary": null,
+        "type": "mouse_button"
+      },
+      "xboxController": {
+        "primary": "RT",
+        "secondary": null,
+        "type": "trigger"
+      }
+    },
+    {
+      "name": "AimDownSights",
+      "displayName": "هدف‌گیری (ADS)",
+      "keyboardMouse": {
+        "primary": "Mouse_RightClick",
+        "secondary": null,
+        "type": "mouse_button"
+      },
+      "xboxController": {
+        "primary": "LT",
+        "secondary": null,
+        "type": "trigger"
+      }
+    },
+    {
+      "name": "JumpMantleParachute",
+      "displayName": "پرش/بالا رفتن/چتر",
+      "keyboardMouse": {
+        "primary": "Spacebar",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "A_Button",
+        "secondary": null,
+        "type": "button"
+      }
+    },
+    {
+      "name": "CrouchProneSlide",
+      "displayName": "نشستن/دراز کشیدن/اسلاید",
+      "keyboardMouse": {
+        "primary": "C",
+        "secondary": "LeftControl",
+        "type": "key_toggle_hold"
+      },
+      "xboxController": {
+        "primary": "B_Button",
+        "secondary": null,
+        "type": "button_toggle_hold"
+      }
+    },
+    {
+      "name": "ReloadInteract",
+      "displayName": "بارگذاری مجدد/تعامل",
+      "keyboardMouse": {
+        "primary": "R",
+        "secondary": "F",
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "X_Button",
+        "secondary": null,
+        "type": "button"
+      }
+    },
+    {
+      "name": "SwapWeapon",
+      "displayName": "تعویض سلاح",
+      "keyboardMouse": {
+        "primary": "1",
+        "secondary": "2",
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "Y_Button",
+        "secondary": null,
+        "type": "button"
+      }
+    },
+    {
+      "name": "Melee",
+      "displayName": "ضربه نزدیک",
+      "keyboardMouse": {
+        "primary": "V",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "RightAnalogStick_Click",
+        "secondary": null,
+        "type": "button"
+      }
+    },
+    {
+      "name": "TacticalSprint",
+      "displayName": "اسپرینت تاکتیکی",
+      "keyboardMouse": {
+        "primary": "LeftShift",
+        "secondary": null,
+        "type": "key_toggle"
+      },
+      "xboxController": {
+        "primary": "LeftAnalogStick_Click",
+        "secondary": null,
+        "type": "button_toggle"
+      }
+    },
+    {
+      "name": "TacticalEquipment",
+      "displayName": "تجهیزات تاکتیکی",
+      "keyboardMouse": {
+        "primary": "Q",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "LB",
+        "secondary": null,
+        "type": "button"
+      }
+    },
+    {
+      "name": "LethalEquipment",
+      "displayName": "تجهیزات کشنده",
+      "keyboardMouse": {
+        "primary": "E",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "RB",
+        "secondary": null,
+        "type": "button"
+      }
+    },
+    {
+      "name": "PingMark",
+      "displayName": "پینگ/علامت‌گذاری",
+      "keyboardMouse": {
+        "primary": "Z",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "Dpad_Up",
+        "secondary": null,
+        "type": "button"
+      }
+    },
+    {
+      "name": "ChangeFireMode",
+      "displayName": "تغییر حالت شلیک",
+      "keyboardMouse": {
+        "primary": "Alt_Left",
+        "secondary": "Mouse_Wheel_Down",
+        "type": "combination"
+      },
+      "xboxController": {
+        "primary": "Dpad_Left",
+        "secondary": null,
+        "type": "button"
+      }
+    },
+    {
+      "name": "OpenMap",
+      "displayName": "باز کردن نقشه",
+      "keyboardMouse": {
+        "primary": "M",
+        "secondary": null,
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "ViewButton",
+        "secondary": null,
+        "type": "button"
+      }
+    },
+    {
+      "name": "OpenMenuScoreboard",
+      "displayName": "باز کردن منو/Scoreboard",
+      "keyboardMouse": {
+        "primary": "Esc",
+        "secondary": "Tab",
+        "type": "key"
+      },
+      "xboxController": {
+        "primary": "MenuButton",
+        "secondary": null,
+        "type": "button"
+      }
+    }
+  ]
+}

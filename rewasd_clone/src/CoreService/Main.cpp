@@ -9,6 +9,7 @@
 #include "CoreService/DeviceEnumerator.h"
 #include "CoreService/RawInputHandler.h"
 #include "CoreService/MappingEngine.h"
+#include "CoreService/ProfileManager.h"
 #include "CoreService/Mapping/MappingRule.h" // For creating test mappings
 
 // In a more complex app, you'd have a central context object rather than globals.
@@ -96,10 +97,25 @@ int main() {
     std::cout << "Virtual controller initialized successfully." << std::endl;
 
     MappingEngine mappingEngine(controller); // Create the mapping engine
+    ProfileManager profileManager(mappingEngine);
 
-    // --- Setup Test Mappings (Task 2.2) ---
-    SetupTestMappings(mappingEngine);
-    // ------------------------------------
+    // --- Load Profiles ---
+    std::string profilePath = "Profiles"; // Relative path to the profiles directory
+    profileManager.LoadProfilesFromDirectory(profilePath);
+
+    const auto& profiles = profileManager.GetProfiles();
+    if (!profiles.empty()) {
+        std::cout << "\n--- Available Profiles ---" << std::endl;
+        for (const auto& profile : profiles) {
+            std::cout << "- " << profile.GetName() << std::endl;
+        }
+        // Activate the first loaded profile for demonstration
+        profileManager.ActivateProfile(profiles.front());
+    } else {
+        std::cout << "\nNo profiles found. Using default empty mapping." << std::endl;
+    }
+    // --------------------
+
 
     HWND hwnd = CreateHiddenWindow();
     if (hwnd == NULL) {

@@ -21,7 +21,7 @@ class InputHandler:
     def on_click(self, x, y, button, pressed):
         event_type = "press" if pressed else "release"
         # To match the JSON format, we'll use "left" and "right" for mouse buttons
-        button_name = f"Mouse_{button.name}"
+        button_name = f"Mouse_{'left' if button == mouse.Button.left else 'right'}"
         self.mapping_engine.process_event(event_type, button_name)
 
     def start(self):

@@ -1,9 +1,9 @@
-import time
 import sys
 from virtual_controller import VirtualController
 from profile_manager import ProfileManager
 from mapping_engine import MappingEngine
 from input_handler import InputHandler
+from gui import Application
 
 def main():
     print("Core Service Starting...")
@@ -19,25 +19,18 @@ def main():
         print("No profiles found. Exiting.")
         sys.exit(1)
 
-    print("\n--- Available Profiles ---")
-    for profile in profile_manager.profiles:
-        print(f"- {profile['profileName']}")
-
-    print(f"\nActivating profile: {profile_manager.active_profile['profileName']}")
-
     # Start input handling
     input_handler.start()
     print("\nCore service is running. Press Ctrl+C to exit.")
 
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        print("\nShutting down...")
-        input_handler.stop()
-        # The virtual controller should be properly shut down
-        # In a real scenario, you might need to release the gamepad explicitly
-        print("Core Service Shut Down.")
+    # Start the GUI
+    app = Application(profile_manager, mapping_engine)
+    app.mainloop()
+
+    print("\nShutting down...")
+    input_handler.stop()
+    print("Core Service Shut Down.")
+
 
 if __name__ == "__main__":
     main()

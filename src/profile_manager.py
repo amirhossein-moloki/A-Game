@@ -14,7 +14,7 @@ class ProfileManager:
         for filename in os.listdir(self.profiles_dir):
             if filename.endswith(".json"):
                 filepath = os.path.join(self.profiles_dir, filename)
-                with open(filepath, "r") as f:
+                with open(filepath, "r", encoding="utf-8") as f:
                     profiles.append(json.load(f))
         return profiles
 

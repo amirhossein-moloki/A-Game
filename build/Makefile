@@ -246,6 +246,30 @@ src/CoreService/MappingEngine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/MappingEngine.cpp.s
 .PHONY : src/CoreService/MappingEngine.cpp.s
 
+src/CoreService/ProfileManager.obj: src/CoreService/ProfileManager.cpp.obj
+.PHONY : src/CoreService/ProfileManager.obj
+
+# target to build an object file
+src/CoreService/ProfileManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/ProfileManager.cpp.obj
+.PHONY : src/CoreService/ProfileManager.cpp.obj
+
+src/CoreService/ProfileManager.i: src/CoreService/ProfileManager.cpp.i
+.PHONY : src/CoreService/ProfileManager.i
+
+# target to preprocess a source file
+src/CoreService/ProfileManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/ProfileManager.cpp.i
+.PHONY : src/CoreService/ProfileManager.cpp.i
+
+src/CoreService/ProfileManager.s: src/CoreService/ProfileManager.cpp.s
+.PHONY : src/CoreService/ProfileManager.s
+
+# target to generate assembly for a file
+src/CoreService/ProfileManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/CoreService.dir/build.make CMakeFiles/CoreService.dir/src/CoreService/ProfileManager.cpp.s
+.PHONY : src/CoreService/ProfileManager.cpp.s
+
 src/CoreService/RawInputHandler.obj: src/CoreService/RawInputHandler.cpp.obj
 .PHONY : src/CoreService/RawInputHandler.obj
 
@@ -316,6 +340,9 @@ help:
 	@echo "... src/CoreService/MappingEngine.obj"
 	@echo "... src/CoreService/MappingEngine.i"
 	@echo "... src/CoreService/MappingEngine.s"
+	@echo "... src/CoreService/ProfileManager.obj"
+	@echo "... src/CoreService/ProfileManager.i"
+	@echo "... src/CoreService/ProfileManager.s"
 	@echo "... src/CoreService/RawInputHandler.obj"
 	@echo "... src/CoreService/RawInputHandler.i"
 	@echo "... src/CoreService/RawInputHandler.s"

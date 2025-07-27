@@ -3,7 +3,7 @@
 #include "MappingEngine.h"
 #include <string>
 #include <vector>
-#include <nlohmann/json.hpp>
+#include "nlohmann/json.hpp"
 
 // Forward declaration
 class MappingRule;

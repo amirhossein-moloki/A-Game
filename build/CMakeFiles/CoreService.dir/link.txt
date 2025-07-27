@@ -1,3 +1,3 @@
 /usr/bin/cmake -E rm -f CMakeFiles/CoreService.dir/objects.a
 /usr/bin/x86_64-w64-mingw32-ar qc CMakeFiles/CoreService.dir/objects.a @CMakeFiles/CoreService.dir/objects1.rsp
-/usr/bin/x86_64-w64-mingw32-g++ -I/usr/x86_64-w64-mingw32/include -mwindows -Wl,--whole-archive CMakeFiles/CoreService.dir/objects.a -Wl,--no-whole-archive -o CoreService.exe -Wl,--out-implib,libCoreService.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/CoreService.dir/linkLibs.rsp
+/usr/bin/x86_64-w64-mingw32-g++ -I/app/include/CoreService -mwindows -Wl,--whole-archive CMakeFiles/CoreService.dir/objects.a -Wl,--no-whole-archive -o CoreService.exe -Wl,--out-implib,libCoreService.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles/CoreService.dir/linkLibs.rsp

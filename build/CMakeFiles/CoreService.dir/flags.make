@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = @CMakeFiles/CoreService.dir/includes_CXX.rsp
 
-CXX_FLAGS = -I/usr/x86_64-w64-mingw32/include -std=gnu++17
+CXX_FLAGS = -I/app/include/CoreService -std=gnu++17
 

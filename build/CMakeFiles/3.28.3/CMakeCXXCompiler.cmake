@@ -79,7 +79,7 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/x86_64-w64-mingw32;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/backward;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed;/usr/x86_64-w64-mingw32/include")
+set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/app/include/CoreService;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/x86_64-w64-mingw32;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include/c++/backward;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include;/usr/lib/gcc/x86_64-w64-mingw32/13-win32/include-fixed;/usr/x86_64-w64-mingw32/include")
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "stdc++;mingw32;gcc_s;gcc;moldname;mingwex;kernel32;advapi32;shell32;user32;kernel32;mingw32;gcc_s;gcc;moldname;mingwex;kernel32")
 set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/x86_64-w64-mingw32/13-win32;/usr/x86_64-w64-mingw32/lib")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

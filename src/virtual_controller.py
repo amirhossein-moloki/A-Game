@@ -1,7 +1,22 @@
 import vgamepad as vg
+import winreg
+import webbrowser
+
+def is_vigem_installed():
+    try:
+        # Check for the ViGEmBus driver in the Windows registry
+        key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r"SYSTEM\CurrentControlSet\Services\ViGEmBus")
+        winreg.CloseKey(key)
+        return True
+    except FileNotFoundError:
+        return False
 
 class VirtualController:
     def __init__(self):
+        if not is_vigem_installed():
+            print("ViGEmBus driver not found. Please install it from https://github.com/ViGEm/ViGEmBus/releases")
+            webbrowser.open("https://github.com/ViGEm/ViGEmBus/releases")
+            raise SystemExit("ViGEmBus driver not found.")
         self.gamepad = vg.VX360Gamepad()
 
     def press_button(self, button):

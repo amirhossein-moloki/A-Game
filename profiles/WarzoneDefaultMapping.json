@@ -5,7 +5,7 @@
       "name": "MoveForward",
       "displayName": "حرکت به جلو",
       "keyboardMouse": {
-        "primary": "W",
+        "primary": "w",
         "secondary": null,
         "type": "key"
       },
@@ -19,7 +19,7 @@
       "name": "MoveBackward",
       "displayName": "حرکت به عقب",
       "keyboardMouse": {
-        "primary": "S",
+        "primary": "s",
         "secondary": null,
         "type": "key"
       },
@@ -33,7 +33,7 @@
       "name": "StrafeLeft",
       "displayName": "حرکت به چپ",
       "keyboardMouse": {
-        "primary": "A",
+        "primary": "a",
         "secondary": null,
         "type": "key"
       },
@@ -47,7 +47,7 @@
       "name": "StrafeRight",
       "displayName": "حرکت به راست",
       "keyboardMouse": {
-        "primary": "D",
+        "primary": "d",
         "secondary": null,
         "type": "key"
       },
@@ -75,7 +75,7 @@
       "name": "Fire",
       "displayName": "شلیک",
       "keyboardMouse": {
-        "primary": "Mouse_LeftClick",
+        "primary": "Mouse_left",
         "secondary": null,
         "type": "mouse_button"
       },
@@ -89,7 +89,7 @@
       "name": "AimDownSights",
       "displayName": "هدف‌گیری (ADS)",
       "keyboardMouse": {
-        "primary": "Mouse_RightClick",
+        "primary": "Mouse_right",
         "secondary": null,
         "type": "mouse_button"
       },
@@ -103,7 +103,7 @@
       "name": "JumpMantleParachute",
       "displayName": "پرش/بالا رفتن/چتر",
       "keyboardMouse": {
-        "primary": "Spacebar",
+        "primary": "space",
         "secondary": null,
         "type": "key"
       },
@@ -117,8 +117,8 @@
       "name": "CrouchProneSlide",
       "displayName": "نشستن/دراز کشیدن/اسلاید",
       "keyboardMouse": {
-        "primary": "C",
-        "secondary": "LeftControl",
+        "primary": "c",
+        "secondary": "ctrl_l",
         "type": "key_toggle_hold"
       },
       "xboxController": {
@@ -131,8 +131,8 @@
       "name": "ReloadInteract",
       "displayName": "بارگذاری مجدد/تعامل",
       "keyboardMouse": {
-        "primary": "R",
-        "secondary": "F",
+        "primary": "r",
+        "secondary": "f",
         "type": "key"
       },
       "xboxController": {
@@ -159,7 +159,7 @@
       "name": "Melee",
       "displayName": "ضربه نزدیک",
       "keyboardMouse": {
-        "primary": "V",
+        "primary": "v",
         "secondary": null,
         "type": "key"
       },
@@ -173,7 +173,7 @@
       "name": "TacticalSprint",
       "displayName": "اسپرینت تاکتیکی",
       "keyboardMouse": {
-        "primary": "LeftShift",
+        "primary": "shift",
         "secondary": null,
         "type": "key_toggle"
       },
@@ -187,7 +187,7 @@
       "name": "TacticalEquipment",
       "displayName": "تجهیزات تاکتیکی",
       "keyboardMouse": {
-        "primary": "Q",
+        "primary": "q",
         "secondary": null,
         "type": "key"
       },
@@ -201,7 +201,7 @@
       "name": "LethalEquipment",
       "displayName": "تجهیزات کشنده",
       "keyboardMouse": {
-        "primary": "E",
+        "primary": "e",
         "secondary": null,
         "type": "key"
       },
@@ -215,7 +215,7 @@
       "name": "PingMark",
       "displayName": "پینگ/علامت‌گذاری",
       "keyboardMouse": {
-        "primary": "Z",
+        "primary": "z",
         "secondary": null,
         "type": "key"
       },
@@ -229,8 +229,8 @@
       "name": "ChangeFireMode",
       "displayName": "تغییر حالت شلیک",
       "keyboardMouse": {
-        "primary": "Alt_Left",
-        "secondary": "Mouse_Wheel_Down",
+        "primary": "alt_l",
+        "secondary": "down",
         "type": "combination"
       },
       "xboxController": {
@@ -243,7 +243,7 @@
       "name": "OpenMap",
       "displayName": "باز کردن نقشه",
       "keyboardMouse": {
-        "primary": "M",
+        "primary": "m",
         "secondary": null,
         "type": "key"
       },
@@ -257,8 +257,8 @@
       "name": "OpenMenuScoreboard",
       "displayName": "باز کردن منو/Scoreboard",
       "keyboardMouse": {
-        "primary": "Esc",
-        "secondary": "Tab",
+        "primary": "esc",
+        "secondary": "tab",
         "type": "key"
       },
       "xboxController": {

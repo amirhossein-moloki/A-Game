@@ -1,0 +1,6 @@
+{
+    "device": "Test Device",
+    "mappings": {
+        "button_A": "key_X"
+    }
+}

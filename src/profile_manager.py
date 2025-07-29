@@ -24,3 +24,36 @@ class ProfileManager:
                 self.active_profile = profile
                 return True
         return False
+
+    def create_profile(self, profile_name):
+        profile_data = {"profileName": profile_name, "actions": []}
+        filepath = os.path.join(self.profiles_dir, f"{profile_name}.json")
+        with open(filepath, "w", encoding="utf-8") as f:
+            json.dump(profile_data, f, indent=2)
+        self.profiles.append(profile_data)
+
+    def delete_profile(self, profile_name):
+        filepath = os.path.join(self.profiles_dir, f"{profile_name}.json")
+        if os.path.exists(filepath):
+            os.remove(filepath)
+        self.profiles = [p for p in self.profiles if p["profileName"] != profile_name]
+
+    def save_mapping(self, profile_name, key, button):
+        for profile in self.profiles:
+            if profile["profileName"] == profile_name:
+                # Check if the mapping already exists and update it
+                for action in profile["actions"]:
+                    if action["keyboardMouse"]["primary"] == key:
+                        action["xboxController"]["primary"] = button
+                        break
+                else:
+                    # Add a new mapping
+                    profile["actions"].append({
+                        "name": f"{key} to {button}",
+                        "keyboardMouse": {"primary": key},
+                        "xboxController": {"primary": button}
+                    })
+                filepath = os.path.join(self.profiles_dir, f"{profile_name}.json")
+                with open(filepath, "w", encoding="utf-8") as f:
+                    json.dump(profile, f, indent=2)
+                break

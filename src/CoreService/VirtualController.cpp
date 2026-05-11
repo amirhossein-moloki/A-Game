@@ -113,3 +113,13 @@ void VirtualController::ReleaseButtonA() {
     //       // report.wButtons &= ~XUSB_GAMEPAD_A; // This would be if we had state
     //       vigem_target_x360_update(client, xbox_target, report); // Send an empty report or one with A cleared
 }
+
+void VirtualController::SetButtonState(VirtualButtonType button, bool pressed) {
+    if (!initialized || !xbox_target) return;
+    std::cout << "Simulating Button " << static_cast<int>(button) << (pressed ? " Press" : " Release") << " on virtual controller." << std::endl;
+}
+
+void VirtualController::SetAxisValue(VirtualAxisType axis, int value) {
+    if (!initialized || !xbox_target) return;
+    std::cout << "Simulating Axis " << static_cast<int>(axis) << " move to " << value << " on virtual controller." << std::endl;
+}

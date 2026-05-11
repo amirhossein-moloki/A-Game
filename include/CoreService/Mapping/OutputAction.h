@@ -61,11 +61,17 @@ struct VirtualAxisAction {
     int value; // Value depends on the axis (e.g., -32768 to 32767 for sticks, 0-255 for triggers)
 };
 
-// Placeholder for more complex actions like macros
+struct DelayAction {
+    uint32_t durationMs;
+};
+
+// Sequence item can be a button action, axis action, or a delay.
+using MacroStep = std::variant<VirtualButtonAction, VirtualAxisAction, DelayAction>;
+
+// A macro is a named sequence of steps.
 struct MacroAction {
-    std::string macroName; // Identifier for a predefined macro
-    // Or perhaps a sequence of actions directly
-    // std::vector<std::variant<VirtualButtonAction, VirtualAxisAction, DelayAction>> sequence;
+    std::string macroName;
+    std::vector<MacroStep> sequence;
 };
 
 
@@ -73,7 +79,7 @@ struct MacroAction {
 using OutputActionData = std::variant<
     VirtualButtonAction,
     VirtualAxisAction,
-    MacroAction // Example for future extension
+    MacroAction
 >;
 
 struct OutputAction {

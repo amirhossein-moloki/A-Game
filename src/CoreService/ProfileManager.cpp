@@ -47,8 +47,6 @@ namespace nlohmann {
     }
 
     void to_json(json& j, const OutputAction& action) {
-        // This is a simplified version. A real implementation would handle
-        // the variant (VirtualButtonAction, VirtualAxisAction, etc.) properly.
         if (std::holds_alternative<VirtualButtonAction>(action.action)) {
             const auto& btnAction = std::get<VirtualButtonAction>(action.action);
             j = json{{"type", "VirtualButtonAction"},
@@ -59,8 +57,22 @@ namespace nlohmann {
              j = json{{"type", "VirtualAxisAction"},
                      {"axis", static_cast<int>(axisAction.axis)},
                      {"value", axisAction.value}};
+        } else if (std::holds_alternative<MacroAction>(action.action)) {
+            const auto& macroAction = std::get<MacroAction>(action.action);
+            j = json{{"type", "MacroAction"},
+                     {"name", macroAction.macroName}};
+            json steps = json::array();
+            for (const auto& step : macroAction.sequence) {
+                if (std::holds_alternative<VirtualButtonAction>(step)) {
+                    const auto& b = std::get<VirtualButtonAction>(step);
+                    steps.push_back({{"type", "button"}, {"id", static_cast<int>(b.button)}, {"press", b.press}});
+                } else if (std::holds_alternative<DelayAction>(step)) {
+                    const auto& d = std::get<DelayAction>(step);
+                    steps.push_back({{"type", "delay"}, {"duration", d.durationMs}});
+                }
+            }
+            j["sequence"] = steps;
         }
-        // Add other action types as needed
     }
 
     void from_json(const json& j, OutputAction& action) {
@@ -75,34 +87,34 @@ namespace nlohmann {
             axisAction.axis = static_cast<VirtualAxisType>(j.at("axis").get<int>());
             axisAction.value = j.at("value").get<int>();
             action.action = axisAction;
+        } else if (type == "MacroAction") {
+            MacroAction macro;
+            macro.macroName = j.at("name").get<std::string>();
+            for (const auto& step_j : j.at("sequence")) {
+                std::string step_type = step_j.at("type").get<std::string>();
+                if (step_type == "button") {
+                    VirtualButtonAction b;
+                    b.button = static_cast<VirtualButtonType>(step_j.at("id").get<int>());
+                    b.press = step_j.at("press").get<bool>();
+                    macro.sequence.push_back(b);
+                } else if (step_type == "delay") {
+                    DelayAction d;
+                    d.durationMs = step_j.at("duration").get<uint32_t>();
+                    macro.sequence.push_back(d);
+                }
+            }
+            action.action = macro;
         }
-        // Add other action types as needed
     }
 
     void to_json(json& j, const MappingRule& rule) {
-        // This requires MappingRule to expose its members or have getters
-        // For now, assuming direct access or suitable getters for condition and actions
-        // This is a conceptual placeholder as MappingRule's internals are private.
-        // We would need to make MappingRule::condition and MappingRule::actions accessible.
-        // For now, this won't compile without changes to MappingRule.
-        // Let's assume MappingRule has:
-        // const InputCondition& GetCondition() const;
-        // const std::vector<OutputAction>& GetActions() const;
-        // j = json{{"condition", rule.GetCondition()}, {"actions", rule.GetActions()}};
-
-        // Placeholder if MappingRule internals are not accessible
-        // This part needs to be adjusted based on MappingRule's actual interface
-        j = json{{"error", "MappingRule to_json not fully implemented due to private members"}};
+        j = json{{"condition", rule.GetCondition()}, {"actions", rule.GetActions()}};
     }
 
     void from_json(const json& j, MappingRule& rule) {
-        // Conceptual placeholder - requires MappingRule to be modifiable or have a suitable constructor
-        // InputCondition cond = j.at("condition").get<InputCondition>();
-        // std::vector<OutputAction> actions = j.at("actions").get<std::vector<OutputAction>>();
-        // rule = MappingRule(cond, actions); // Assuming such a constructor or setters exist
-
-        // Placeholder if MappingRule internals are not accessible
-        std::cerr << "MappingRule from_json not fully implemented" << std::endl;
+        InputCondition cond = j.at("condition").get<InputCondition>();
+        std::vector<OutputAction> actions = j.at("actions").get<std::vector<OutputAction>>();
+        rule = MappingRule(cond, actions);
     }
 } // namespace nlohmann
 
@@ -134,14 +146,11 @@ bool ProfileManager::LoadProfile(const std::string& filepath) {
         std::string profileName = j.at("profileName").get<std::string>();
         Profile loadedProfile(profileName);
 
-        if (j.contains("actions") && j.at("actions").is_array()) {
-            // This part is complex because it requires a full deserialization logic
-            // based on your JSON structure. For now, we'll just log the action names.
-            for (const auto& action_json : j.at("actions")) {
-                 std::string actionName = action_json.at("name").get<std::string>();
-                 // Here you would deserialize the full action and create a MappingRule
-                 // For now, we'll just print the name as a placeholder for loading logic.
-                 std::cout << "  - Found action: " << actionName << std::endl;
+        if (j.contains("mappings") && j.at("mappings").is_array()) {
+            for (const auto& rule_json : j.at("mappings")) {
+                 MappingRule rule;
+                 from_json(rule_json, rule);
+                 loadedProfile.AddMapping(rule);
             }
         }
 
@@ -161,16 +170,12 @@ bool ProfileManager::SaveProfile(const Profile& profile, const std::string& file
     json j;
     j["profile_name"] = profile.GetName();
 
-    // This will not work until MappingRule's to_json is correctly implemented
-    // j["mappings"] = profile.GetMappings(); // This requires a to_json for std::vector<MappingRule>
-
-    j["mappings"] = json::array(); // Placeholder
+    j["mappings"] = json::array();
     for(const auto& rule : profile.GetMappings()) {
-        // json rule_json;
-        // to_json(rule_json, rule); // This needs a working to_json for MappingRule
-        // j["mappings"].push_back(rule_json);
+        json rule_json;
+        to_json(rule_json, rule);
+        j["mappings"].push_back(rule_json);
     }
-     std::cerr << "Warning: Skipping mapping saving due to incomplete MappingRule serialization." << std::endl;
 
 
     std::ofstream ofs(filepath);

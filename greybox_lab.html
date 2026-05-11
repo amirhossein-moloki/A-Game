@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greybox Lab Prototype</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #333; }
+        canvas { display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: rgba(0,0,0,0.7);
+            padding: 15px;
+            border-radius: 5px;
+            pointer-events: none;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .key { color: #aaa; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="info">
+        <strong style="font-size: 18px;">Laboratory Greybox Prototype</strong><br>
+        <span class="key">Layout:</span> 30x30m Square Room<br>
+        <span class="key">Controls:</span> Left Click to Orbit | Right Click to Pan | Scroll to Zoom<br><br>
+        <b>Elements:</b><br>
+        - <span style="color: #ccc;">Central Feature:</span> Industrial Experiment Chair<br>
+        - <span style="color: #ccc;">Observation:</span> Window + Console (Behind North Wall)<br>
+        - <span style="color: #ccc;">Utility:</span> Tool Cart, Sink (-12, -12), Camera (Top Corner)<br>
+        - <span style="color: #ccc;">Scale:</span> 1.8m Human Capsule (near Cart)
+    </div>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // --- Scene Setup ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x1a1a1a);
+
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(25, 15, 25);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.target.set(0, 1, 0);
+        controls.update();
+
+        // --- Lighting (Basic for Shape Definition) ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+        scene.add(ambientLight);
+
+        const mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        mainLight.position.set(10, 20, 10);
+        mainLight.castShadow = true;
+        scene.add(mainLight);
+
+        // --- Materials ---
+        const matFloor = new THREE.MeshStandardMaterial({ color: 0x333333 }); // Walkable
+        const matWall = new THREE.MeshStandardMaterial({ color: 0x666666 });  // Boundary
+        const matObstacle = new THREE.MeshStandardMaterial({ color: 0xaaaaaa }); // Props
+        const matMetal = new THREE.MeshStandardMaterial({ color: 0xcccccc });   // Features
+        const matWindow = new THREE.MeshStandardMaterial({ color: 0xaaccff, transparent: true, opacity: 0.2 });
+        const matHuman = new THREE.MeshStandardMaterial({ color: 0xffffff });   // Scale Ref
+
+        // --- 1. Layout (30x30 Room) ---
+        const floor = new THREE.Mesh(new THREE.BoxGeometry(30, 0.2, 30), matFloor);
+        floor.position.y = -0.1;
+        floor.receiveShadow = true;
+        scene.add(floor);
+
+        const wallHeight = 5;
+        // North Wall (with window cutout)
+        const wallN_L = new THREE.Mesh(new THREE.BoxGeometry(10, wallHeight, 0.4), matWall);
+        wallN_L.position.set(-10, 2.5, 15);
+        scene.add(wallN_L);
+        const wallN_R = new THREE.Mesh(new THREE.BoxGeometry(10, wallHeight, 0.4), matWall);
+        wallN_R.position.set(10, 2.5, 15);
+        scene.add(wallN_R);
+        const wallN_Top = new THREE.Mesh(new THREE.BoxGeometry(10, 1, 0.4), matWall);
+        wallN_Top.position.set(0, 4.5, 15);
+        scene.add(wallN_Top);
+        const wallN_Bot = new THREE.Mesh(new THREE.BoxGeometry(10, 1, 0.4), matWall);
+        wallN_Bot.position.set(0, 0.5, 15);
+        scene.add(wallN_Bot);
+
+        // Glass Window
+        const windowPane = new THREE.Mesh(new THREE.BoxGeometry(10, 3, 0.1), matWindow);
+        windowPane.position.set(0, 2.5, 15);
+        scene.add(windowPane);
+
+        // South, East, West Walls
+        const wallS = new THREE.Mesh(new THREE.BoxGeometry(30, wallHeight, 0.4), matWall);
+        wallS.position.set(0, 2.5, -15);
+        scene.add(wallS);
+
+        const wallE = new THREE.Mesh(new THREE.BoxGeometry(0.4, wallHeight, 30), matWall);
+        wallE.position.set(15, 2.5, 0);
+        scene.add(wallE);
+
+        const wallW = new THREE.Mesh(new THREE.BoxGeometry(0.4, wallHeight, 30), matWall);
+        wallW.position.set(-15, 2.5, 0);
+        scene.add(wallW);
+
+        // --- 2. Central Feature: Experiment Chair ---
+        const chair = new THREE.Group();
+
+        const chairBase = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.3, 1.6), matMetal);
+        chairBase.position.y = 0.15;
+        chair.add(chairBase);
+
+        const chairStem = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.3, 0.6), matMetal);
+        chairStem.position.y = 0.5;
+        chair.add(chairStem);
+
+        const chairSeat = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.2, 1.4), matMetal);
+        chairSeat.position.y = 0.9;
+        chair.add(chairSeat);
+
+        const chairBack = new THREE.Mesh(new THREE.BoxGeometry(1.2, 1.4, 0.2), matMetal);
+        chairBack.position.set(0, 1.5, 0.7);
+        chairBack.rotation.x = -Math.PI / 8;
+        chair.add(chairBack);
+
+        const armL = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.1, 1), matMetal);
+        armL.position.set(-0.7, 1.1, 0);
+        chair.add(armL);
+        const armR = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.1, 1), matMetal);
+        armR.position.set(0.7, 1.1, 0);
+        chair.add(armR);
+
+        chair.position.set(0, 0, 0);
+        scene.add(chair);
+
+        // --- 3. Observation Area ---
+        const desk = new THREE.Mesh(new THREE.BoxGeometry(5, 0.8, 1.5), matObstacle);
+        desk.position.set(0, 0.4, 17.5);
+        scene.add(desk);
+
+        const monitor = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.8, 0.1), matObstacle);
+        monitor.position.set(0, 1.2, 17);
+        scene.add(monitor);
+
+        const obsChair = new THREE.Mesh(new THREE.CylinderGeometry(0.4, 0.4, 0.7), matObstacle);
+        obsChair.position.set(0, 0.35, 19.5);
+        scene.add(obsChair);
+
+        // --- 4. Utility Areas ---
+        // Tool Cart
+        const cart = new THREE.Group();
+        const cartBody = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.8, 0.8), matObstacle);
+        cartBody.position.y = 0.4;
+        cart.add(cartBody);
+
+        const cartHandle = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.8), matMetal);
+        cartHandle.position.set(0, 0.9, -0.45);
+        cartHandle.rotation.z = Math.PI / 2;
+        cart.add(cartHandle);
+
+        const toolA = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.1, 0.4), matHuman);
+        toolA.position.set(0.3, 0.85, 0.1);
+        cart.add(toolA);
+        const toolB = new THREE.Mesh(new THREE.SphereGeometry(0.15), matHuman);
+        toolB.position.set(-0.2, 0.95, 0.2);
+        cart.add(toolB);
+
+        cart.position.set(10, 0, 10);
+        scene.add(cart);
+
+        // Sink
+        const sink = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 0.1, 32), matFloor);
+        sink.position.set(-12, 0.01, -12);
+        scene.add(sink);
+        const drain = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.05), matWall);
+        drain.position.set(-12, 0.05, -12);
+        scene.add(drain);
+
+        // Camera
+        const camStem = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.5), matObstacle);
+        camStem.position.set(-14.5, 4.75, 14.5);
+        scene.add(camStem);
+        const camHead = new THREE.Mesh(new THREE.SphereGeometry(0.35), matMetal);
+        camHead.position.set(-14.1, 4.4, 14.1);
+        scene.add(camHead);
+
+        // --- 5. Scale Reference ---
+        const playerRef = new THREE.Mesh(new THREE.CapsuleGeometry(0.4, 1.0, 4, 8), matHuman);
+        playerRef.position.set(12, 0.9, 10);
+        scene.add(playerRef);
+
+        // --- Render Loop ---
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>

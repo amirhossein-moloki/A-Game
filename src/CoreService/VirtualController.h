@@ -10,11 +10,13 @@ public:
     bool Initialize();
     void Shutdown();
 
+    // Methods for other buttons, axes, etc.
+    void SetButtonState(VirtualButtonType button, bool pressed);
+    void SetAxisValue(VirtualAxisType axis, int value);
+
     // Example: Simulate pressing button A on an Xbox 360 controller
     void PressButtonA();
     void ReleaseButtonA();
-
-    // Add more methods for other buttons, axes, etc.
 
 private:
     PVIGEM_CLIENT client;

@@ -1,0 +1,31 @@
+{
+  "profileName": "Mortal Kombat Combos",
+  "mappings": [
+    {
+      "condition": {
+        "type": 0,
+        "id_type": 0,
+        "button_id": 1
+      },
+      "actions": [
+        {
+          "type": "MacroAction",
+          "name": "Scorpion Spear",
+          "sequence": [
+            { "type": "button", "id": 2, "press": true },
+            { "type": "delay", "duration": 50 },
+            { "type": "button", "id": 2, "press": false },
+            { "type": "delay", "duration": 50 },
+            { "type": "button", "id": 3, "press": true },
+            { "type": "delay", "duration": 50 },
+            { "type": "button", "id": 3, "press": false },
+            { "type": "delay", "duration": 50 },
+            { "type": "button", "id": 11, "press": true },
+            { "type": "delay", "duration": 50 },
+            { "type": "button", "id": 11, "press": false }
+          ]
+        }
+      ]
+    }
+  ]
+}

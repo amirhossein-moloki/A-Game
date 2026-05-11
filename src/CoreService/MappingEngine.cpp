@@ -1,6 +1,8 @@
 #include "CoreService/MappingEngine.h"
 #include "CoreService/VirtualController.h" // For sending output
 #include <iostream> // For debug messages
+#include <thread>
+#include <chrono>
 
 MappingEngine::MappingEngine(VirtualController& controller) : virtualController(controller) {}
 
@@ -51,17 +53,8 @@ void MappingEngine::ExecuteAction(const OutputAction& action, const InputEvent& 
         std::cout << "  Action Type: VirtualButton, Button: " << static_cast<int>(btnAction.button)
                   << ", Should Press: " << shouldBePressed << std::endl;
 
-        // Example: Map to VirtualController's Button A for demonstration
-        if (btnAction.button == VirtualButtonType::XBOX_A) {
-            if (shouldBePressed) {
-                virtualController.PressButtonA();
-            } else {
-                virtualController.ReleaseButtonA();
-            }
-        }
-        // TODO: Implement a comprehensive mapping from VirtualButtonType to actual ViGEmBus calls
-        // This will likely involve a switch statement or a map.
-        // virtualController.SetButtonState(btnAction.button, shouldBePressed);
+        // Use the virtual controller to set the button state
+        virtualController.SetButtonState(btnAction.button, shouldBePressed);
 
     } else if (std::holds_alternative<VirtualAxisAction>(action.action)) {
         const auto& axisAction = std::get<VirtualAxisAction>(action.action);
@@ -82,14 +75,26 @@ void MappingEngine::ExecuteAction(const OutputAction& action, const InputEvent& 
             }
         }
 
-        // TODO: Implement mapping from VirtualAxisType to actual ViGEmBus calls
-        // virtualController.SetAxisValue(axisAction.axis, valueToApply);
+        virtualController.SetAxisValue(axisAction.axis, valueToApply);
 
     } else if (std::holds_alternative<MacroAction>(action.action)) {
         const auto& macroAction = std::get<MacroAction>(action.action);
         std::cout << "  Action Type: Macro, Name: " << macroAction.macroName << std::endl;
-        // TODO: Implement macro execution logic
-        // This would involve looking up the macro by name and executing its sequence of actions.
+
+        // Execute macro steps.
+        // Note: For now, this is blocking. In a production app, this should run on a separate thread.
+        for (const auto& step : macroAction.sequence) {
+            if (std::holds_alternative<VirtualButtonAction>(step)) {
+                const auto& btn = std::get<VirtualButtonAction>(step);
+                virtualController.SetButtonState(btn.button, btn.press);
+            } else if (std::holds_alternative<VirtualAxisAction>(step)) {
+                const auto& axis = std::get<VirtualAxisAction>(step);
+                virtualController.SetAxisValue(axis.axis, axis.value);
+            } else if (std::holds_alternative<DelayAction>(step)) {
+                const auto& delay = std::get<DelayAction>(step);
+                std::this_thread::sleep_for(std::chrono::milliseconds(delay.durationMs));
+            }
+        }
     } else {
         std::cout << "  Action Type: Unknown or not yet implemented." << std::endl;
     }

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تأثیر ایدئولوژی بر مذاکرات</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'Vazir';
+            src: url('https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/Vazir.woff2') format('woff2');
+        }
+
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #ffffff;
+            --accent-color: #3f51b5;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazir', Tahoma, sans-serif;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            overflow: hidden;
+            direction: rtl;
+        }
+
+        #presentation {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background-color: var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide:nth-child(even) {
+            background-color: var(--light-bg);
+        }
+
+        .slide-content {
+            max-width: 900px;
+            width: 100%;
+            z-index: 2;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+        }
+
+        p, li {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        ul {
+            list-style: none;
+            text-align: right;
+            display: inline-block;
+            width: 100%;
+        }
+
+        li {
+            position: relative;
+            padding-right: 30px;
+        }
+
+        li::before {
+            content: "\f054";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--accent-color);
+        }
+
+        .image-container {
+            margin-top: 30px;
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .icon-large {
+            font-size: 5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Vazir', sans-serif;
+            font-size: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .slide-number {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .download-btn {
+            background-color: #2e7d32;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            p, li { font-size: 1rem; }
+            .image-container { height: 200px; }
+        }
+
+        /* PDF Styles */
+        .pdf-mode .slide {
+            page-break-after: always;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 100vh;
+        }
+        .pdf-mode .controls, .pdf-mode .top-bar {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <button class="download-btn" onclick="downloadPDF()">
+        <i class="fas fa-file-pdf"></i> دانلود PDF
+    </button>
+</div>
+
+<div id="presentation">
+    <!-- Slide 1 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h1>تأثیر ایدئولوژی بر مذاکرات</h1>
+            <p style="text-align: center;">درس: اصول و فنون مذاکره</p>
+            <p style="text-align: center;">ارائه‌دهندگان: یاسین اذانچیلر، امیرحسین ملوکی</p>
+            <p style="text-align: center;">تاریخ: ۲۸ اردیبهشت ۱۴۰۵</p>
+            <div class="image-container" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2959213?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+        </div>
+    </section>
+
+    <!-- Slide 2 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>فهرست مطالب</h2>
+            <div style="display: flex; justify-content: space-around; text-align: right;">
+                <ul>
+                    <li>۱. مقدمه</li>
+                    <li>۲. بیان کلی موضوع</li>
+                    <li>۳. مفهوم ایدئولوژی</li>
+                    <li>۴. مفهوم مذاکره</li>
+                    <li>۵. رابطه ایدئولوژی و مذاکره</li>
+                    <li>۶. تأثیر بر اهداف</li>
+                    <li>۷. تأثیر بر سبک مذاکره</li>
+                </ul>
+                <ul>
+                    <li>۸. تأثیر بر اعتماد</li>
+                    <li>۹. نقش تعصب</li>
+                    <li>۱۰. مزایا و معایب</li>
+                    <li>۱۱. راهکارها</li>
+                    <li>۱۲. نمونه‌ها</li>
+                    <li>۱۳. نتیجه‌گیری</li>
+                    <li>۱۴. پرسش و پاسخ</li>
+                </ul>
+            </div>
+            <i class="fas fa-list-ul icon-large" style="margin-top: 20px;"></i>
+        </div>
+    </section>
+
+    <!-- Slide 3 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>مقدمه</h2>
+            <p>مذاکره یکی از مهم‌ترین ابزارهای انسان برای حل اختلاف، رسیدن به توافق و مدیریت تضاد منافع است. در ظاهر، مذاکره فرایندی عقلانی به نظر می‌رسد؛ یعنی دو یا چند طرف با بررسی منافع خود، امتیازها، هزینه‌ها و پیامدها به یک نتیجه مشترک می‌رسند. اما در واقعیت، مذاکره فقط یک فرایند منطقی و اقتصادی نیست. باورها، ارزش‌ها، هویت‌ها و جهان‌بینی طرفین نیز نقش بسیار مهمی در آن دارند. یکی از مهم‌ترین این عوامل، ایدئولوژی است. ایدئولوژی می‌تواند تعیین کند که افراد چه چیزی را درست یا غلط بدانند، چه چیزی را قابل قبول یا غیرقابل قبول ببینند، و تا چه اندازه حاضر باشند در مذاکره انعطاف نشان دهند. به همین دلیل، در بسیاری از مذاکرات، مشکل اصلی فقط اختلاف منافع نیست، بلکه اختلاف در جهان‌بینی و اصول فکری است. گاهی دو طرف ممکن است از نظر مادی به توافق برسند، اما به خاطر تضاد ایدئولوژیک، توافق نهایی شکل نگیرد. از همین رو، شناخت تأثیر ایدئولوژی بر مذاکرات برای دانشجویان، مدیران، سیاستمداران و حتی افراد عادی بسیار مهم است.</p>
+            <div class="image-container" style="height: 200px; background-image: url('https://images.unsplash.com/photo-1557426272-fc759fbb7a8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+        </div>
+    </section>
+
+    <!-- Slide 4 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>بیان کلی موضوع</h2>
+            <ul>
+                <li>مذاکره فقط بر پایه منافع مادی انجام نمی‌شود.</li>
+                <li>باورها و ارزش‌های افراد نقش مهمی در تصمیم‌گیری دارند.</li>
+                <li>ایدئولوژی می‌تواند باعث همکاری یا ایجاد اختلاف شود.</li>
+                <li>شناخت تأثیر ایدئولوژی، کیفیت مذاکرات را افزایش می‌دهد.</li>
+            </ul>
+            <i class="fas fa-project-diagram icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 5 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>ایدئولوژی چیست؟</h2>
+            <p>ایدئولوژی را می‌توان مجموعه‌ای از باورها، ارزش‌ها، اصول فکری و برداشت‌های کلی از جهان دانست که رفتار فرد یا گروه را جهت می‌دهد. ایدئولوژی به انسان‌ها کمک می‌کند تا رویدادها را تفسیر کنند، تصمیم بگیرند و موضع خود را در برابر مسائل مختلف مشخص نمایند. این مفهوم می‌تواند در حوزه‌های مختلفی مانند سیاست، دین، فرهنگ، اقتصاد و اجتماع وجود داشته باشد. در مذاکره نیز ایدئولوژی مانند یک عینک ذهنی عمل می‌کند؛ یعنی هر طرف از پشت این عینک، مسئله را به شکل خاصی می‌بیند. ایدئولوژی همیشه صریح و آشکار نیست. گاهی افراد خودشان هم متوجه نیستند که باورهای عمیق فکری‌شان چه تأثیری بر رفتار مذاکره‌ای آن‌ها دارد. اما در عمل، همین باورهای پنهان می‌توانند تعیین کنند که چه چیزی را بپذیرند، چه چیزی را رد کنند و چه نوع توافقی را مشروع بدانند.</p>
+            <i class="fas fa-glasses icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 6 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>مذاکره چیست؟</h2>
+            <p>مذاکره فرایندی است که در آن دو یا چند طرف برای رسیدن به توافق درباره یک موضوع، با هم گفت‌وگو می‌کنند. در مذاکره، طرفین معمولاً منافع، اهداف یا خواسته‌های متفاوتی دارند. هدف اصلی مذاکره این است که این تفاوت‌ها به جای درگیری و بن‌بست، به نوعی تفاهم یا توافق تبدیل شوند. مذاکره می‌تواند در بسیاری از حوزه‌ها رخ دهد: در روابط خانوادگی، محیط کار، تجارت، سیاست، روابط بین‌الملل و حتی زندگی روزمره. مذاکره موفق فقط به توانایی حرف زدن یا قانع کردن دیگران وابسته نیست، بلکه نیازمند گوش دادن، فهم متقابل، کنترل هیجان، شناخت منافع و احترام به طرف مقابل است. در نگاه ساده، مذاکره یعنی رسیدن به یک «برد-برد». اما در واقع، همه مذاکره‌ها به‌سادگی به این مرحله نمی‌رسند. چون گاهی اختلاف فقط بر سر منافع قابل‌مذاکره نیست، بلکه بر سر اصولی است که هر طرف آن را بخشی از هویت خود می‌داند. در این نقطه، ایدئولوژی وارد مذاکره می‌شود و روند آن را پیچیده‌تر می‌کند.</p>
+            <i class="fas fa-comments icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 7 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>رابطه ایدئولوژی و مذاکره</h2>
+            <p>ایدئولوژی و مذاکره رابطه‌ای بسیار نزدیک دارند. هر مذاکره‌ای در یک فضای فکری و ارزشی انجام می‌شود و طرفین با پیش‌فرض‌های ذهنی خود وارد آن می‌شوند. وقتی دو طرف از نظر ایدئولوژیک به هم نزدیک باشند، احتمال تفاهم بیشتر می‌شود. چون زبان مشترک دارند، ارزش‌های مشابهی را مهم می‌دانند و راحت‌تر به هم اعتماد می‌کنند. اما وقتی اختلاف ایدئولوژیک وجود داشته باشد، هر حرکت طرف مقابل ممکن است تهدیدآمیز، غیرقابل‌اعتماد یا حتی غیراخلاقی تلقی شود. در چنین شرایطی، مذاکره سخت‌تر می‌شود، چون هر طرف فقط در حال دفاع از منافع خود نیست، بلکه از هویت و باورهایش نیز دفاع می‌کند.</p>
+            <i class="fas fa-cogs icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 8 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>تأثیر ایدئولوژی بر اهداف مذاکره</h2>
+            <ul>
+                <li>حفظ اصول و هویت فکری</li>
+                <li>کاهش انعطاف‌پذیری</li>
+                <li>ارزش‌ها مهم‌تر از منافع کوتاه‌مدت</li>
+                <li>دشواری توافق در صورت تضاد ارزشی</li>
+            </ul>
+            <div class="image-container" style="height: 250px; background-image: url('https://images.unsplash.com/photo-1508807526345-15e9b5f4eaff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+        </div>
+    </section>
+
+    <!-- Slide 9 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>تأثیر ایدئولوژی بر سبک مذاکره</h2>
+            <ul>
+                <li>تفاوت در لحن و شیوه گفت‌وگو</li>
+                <li>رقابتی یا همکاری‌محور</li>
+                <li>استدلال‌های ارزشی</li>
+                <li>تأثیر بر امتیازدهی</li>
+            </ul>
+            <i class="fas fa-bullhorn icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 10 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>تأثیر ایدئولوژی بر اعتماد</h2>
+            <ul>
+                <li>اعتماد عنصر اساسی است</li>
+                <li>اختلاف ایدئولوژیک بی‌اعتمادی می‌آفریند</li>
+                <li>سوءظن مانع پیشرفت می‌شود</li>
+                <li>ارزش‌های مشترک اعتماد را تقویت می‌کنند</li>
+            </ul>
+            <i class="fas fa-handshake-slash icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 11 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>نقش تعصب در مذاکرات</h2>
+            <ul>
+                <li>مانع شنیدن نظر مخالف</li>
+                <li>پافشاری شدید بر باورها</li>
+                <li>افزایش احتمال شکست</li>
+                <li>پذیرش تفاوت‌ها راه‌گشاست</li>
+            </ul>
+            <i class="fas fa-road-barrier icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 12 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>مزایای ایدئولوژی در مذاکره</h2>
+            <ul>
+                <li>شفافیت مواضع</li>
+                <li>ایجاد انگیزه و پایداری</li>
+                <li>تقویت هویت گروهی</li>
+                <li>توافق‌های اصولی‌تر</li>
+            </ul>
+            <i class="fas fa-lightbulb icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 13 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>معایب و چالش‌های ایدئولوژی</h2>
+            <ul>
+                <li>کاهش انعطاف‌پذیری</li>
+                <li>افزایش تنش</li>
+                <li>دشواری مصالحه</li>
+                <li>تبدیل مذاکره به تقابل فکری</li>
+            </ul>
+            <i class="fas fa-link-slash icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 14 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>راهکارهای کاهش اثر منفی</h2>
+            <ul>
+                <li>تمرکز بر منافع مشترک</li>
+                <li>احترام به دیدگاه‌های متفاوت</li>
+                <li>گوش دادن فعال</li>
+                <li>زبان محترمانه</li>
+                <li>تفکیک مسائل اصلی و فرعی</li>
+            </ul>
+            <i class="fas fa-bridge-water icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 15 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>نمونه‌های کاربردی</h2>
+            <ul>
+                <li>مذاکرات سیاسی بین کشورها</li>
+                <li>مذاکرات فرهنگی و مذهبی</li>
+                <li>اختلاف‌های سازمانی و مدیریتی</li>
+                <li>محیط دانشگاه و جامعه</li>
+            </ul>
+            <i class="fas fa-globe icon-large"></i>
+        </div>
+    </section>
+
+    <!-- Slide 16 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>نتیجه‌گیری</h2>
+            <p>در مجموع، ایدئولوژی یکی از نیروهای پنهان اما بسیار اثرگذار در مذاکرات است. این نیرو می‌تواند تعیین کند که افراد چگونه فکر کنند، چگونه حرف بزنند، به چه چیزهایی اهمیت بدهند و تا چه اندازه آماده توافق باشند. ایدئولوژی اگر با تعصب و سخت‌گیری همراه شود، مذاکره را دشوار و فرسایشی می‌کند. اما اگر با احترام، عقلانیت و انعطاف همراه باشد، می‌تواند به مذاکره معنا، هویت و استحکام ببخشد. بنابراین، برای موفقیت در مذاکره فقط دانستن فنون گفت‌وگو کافی نیست، بلکه باید فهمید طرف مقابل از چه زاویه‌ای جهان را می‌بیند. شناخت ایدئولوژی، هم به ما کمک می‌کند بهتر مذاکره کنیم و هم باعث می‌شود در برخورد با اختلاف‌ها، منطقی‌تر و انسانی‌تر عمل کنیم.</p>
+            <div class="image-container" style="height: 200px; background-image: url('https://images.unsplash.com/photo-1470252649358-96f3e8053288?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')"></div>
+        </div>
+    </section>
+
+    <!-- Slide 17 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>تشکر و قدردانی</h2>
+            <p style="text-align: center; font-size: 3rem;">تشکر از توجه شما</p>
+            <i class="fas fa-heart icon-large" style="color: #e91e63;"></i>
+        </div>
+    </section>
+
+    <!-- Slide 18 -->
+    <section class="slide">
+        <div class="slide-content">
+            <h2>پرسش و پاسخ</h2>
+            <p style="text-align: center;">اکنون زمان پرسش و پاسخ است. خوشحال می‌شویم نظرات و سؤالات شما را بشنویم.</p>
+            <i class="fas fa-question-circle icon-large" style="font-size: 8rem;"></i>
+        </div>
+    </section>
+</div>
+
+<div class="controls">
+    <div class="nav-buttons">
+        <button id="prevBtn" onclick="moveSlide(-1)">قبلی</button>
+        <button id="nextBtn" onclick="moveSlide(1)">بعدی</button>
+    </div>
+    <div class="slide-number" id="slideNumber">۱ از ۱۸</div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const totalSlides = 18;
+    const presentation = document.getElementById('presentation');
+    const slideNumberDisplay = document.getElementById('slideNumber');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateSlide() {
+        presentation.style.transform = `translateX(${currentSlide * 100}vw)`;
+        slideNumberDisplay.innerText = `${currentSlide + 1} از ${totalSlides}`;
+
+        prevBtn.disabled = currentSlide === 0;
+        nextBtn.disabled = currentSlide === totalSlides - 1;
+    }
+
+    function moveSlide(direction) {
+        currentSlide += direction;
+        if (currentSlide < 0) currentSlide = 0;
+        if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+        updateSlide();
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') {
+            moveSlide(-1); // In RTL, ArrowRight moves to previous
+        } else if (e.key === 'ArrowLeft') {
+            moveSlide(1); // In RTL, ArrowLeft moves to next
+        }
+    });
+
+    async function downloadPDF() {
+        const element = document.body;
+        document.body.classList.add('pdf-mode');
+
+        // Reset transform for PDF generation
+        const originalTransform = presentation.style.transform;
+        presentation.style.transform = 'none';
+        presentation.style.flexDirection = 'column';
+
+        const opt = {
+            margin: 0,
+            filename: 'ideology_negotiation.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+        };
+
+        try {
+            await html2pdf().set(opt).from(element).save();
+        } finally {
+            document.body.classList.remove('pdf-mode');
+            presentation.style.transform = originalTransform;
+            presentation.style.flexDirection = 'row';
+        }
+    }
+
+    updateSlide();
+</script>
+
+</body>
+</html>
